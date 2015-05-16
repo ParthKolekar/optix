@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <title>level Page</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <link rel="stylesheet" type="text/css" href="static/css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="static/css/animate.css"/>
+    </head>
+    <body>
+        <div id="canvasContainer" class="animated" >
+            <canvas id="level" class="canvas"> 
+            </canvas>
+        </div>
+        <div id="container">
+            <div id="border" class="animated" >
+            </div>
+            <div id="btn-container" class="animated " >
+                <div class="btn-optix animated" id="incrementSize">Increment Size</div>
+                <div class="btn-optix animated" id="decrementSize">Decrement Size</div>
+                <div class="btn-optix animated" id="selectSand">Select Sand</div>
+                <div class="btn-optix animated" id="selectRand">Select Rand</div>
+                <div class="btn-optix animated" id="selectIce">Select Ice</div>
+                <div class="btn-optix animated" id="erase">Erase</div>
+                <div class="btn-optix animated" id="useSpray">Use Spray</div>
+                <div class="btn-optix animated" id="usePencil">Use Pencil</div>
+                <div class="btn-optix animated" id="useScale">Use Scale</div>
+                <div class="btn-optix animated" id="parse">Save</div>
+            </div>
+        </div>
+        <div id="err">
+            Landscape Mode Only.
+        </div>
+    </body>
+    <script src="static/js/gameArray.js" type="text/javascript"></script>
+    <script src="static/js/levelCore.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.onresize = function () {
+            /// <summary>FUCK THIS SHIT</summary>
+            location.reload();
+        }
+
+
+    </script>
+    <script>
+        var container = document.getElementById('btn-container');
+        var border = document.getElementById('border');
+
+        border.addEventListener("mouseover", function () {
+            border.classList.remove("fadeInLeft");
+            border.classList.add("fadeOutLeft");
+            container.classList.remove("fadeOutRightBig");
+            container.classList.add("fadeInRightBig");
+        }, true);
+
+        container.addEventListener("dblclick", function () {
+            border.classList.remove("fadeOutLeft");
+            border.classList.add("fadeInLeft");
+            container.classList.remove("fadeInRightBig");
+            container.classList.add("fadeOutRightBig");
+        }, true);
+        
+
+    </script>
+</html>
