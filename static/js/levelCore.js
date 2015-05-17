@@ -14,18 +14,23 @@
     Quadratic Curve Style
     Thanks Parth :)
 
-*	2-June
-	Added Spray and Scale Methods. :p
-	Several Smaller Helpers added.
-	Front end left. And some Refinement.
+*   2-June
+    Added Spray and Scale Methods. :p
+    Several Smaller Helpers added.
+    Front end left. And some Refinement.
 
 *   4-June
     Touch Handlers Corrected.
 
 *   14-June
     Linked the Buttons to The functions.
-    ERROR: Touch Events (Spray Error);
-    Recommend: Change Constant Objects To gameArray. Causes overhead to anonymous function.
+
+    ERROR:
+    Touch Events (Spray Error);
+
+    Recommend:
+    Change Constant Objects To gameArray.
+    Causes overhead to anonymous function.
 
 *   18-June
     BugFix
@@ -36,7 +41,7 @@
 */
 
 var levelCore = (function(levelCore, url) {
-    "use strict";
+    'use strict';
     //Globals
     var canvas, context;
     var mouseX, mouseY;
@@ -239,22 +244,18 @@ var levelCore = (function(levelCore, url) {
         clicks = [];
     };
     var reverseParse = function() {
-        /// <summary></summary>
-        /* 
-        This function gets the imagedata from a canvas and builds up the corresponding game array. 
-        */
+        /// <summary>This function gets the imagedata from a canvas and builds up the corresponding game array. </summary>
+        var array = [];
+        var i, j;
 
-    	var array = [];
-	    var i, j;
+        for (i = 0; i < 1500; i++)
+            array[i] = [];
 
-    	for ( i = 0; i < 1500; i++ )
-    		array[i] = [];
+        for (i = 0; i < 1500; i++)
+            for (j = 0; j < 1500; j++)
+                array[i][j] = 0;
 
-    	for ( i = 0; i < 1500; i++ )
-    		for ( j = 0; j < 1500; j++ )
-    			array[i][j] = 0;
-
-        var imageData = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height);
+        var imageData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
         var pR, pB, pG, pA;
         var x = 0;
         var y = 0;
@@ -262,62 +263,53 @@ var levelCore = (function(levelCore, url) {
         for (i = 0; i < length; i += 4) {
 
             // the pixel red,green,blue and alpha
-        	pR = imageData.data[i];
-        	pG = imageData.data[i + 1];
-			pB = imageData.data[i + 2];
-			pA = imageData.data[i + 3];
+            pR = imageData.data[i];
+            pG = imageData.data[i + 1];
+            pB = imageData.data[i + 2];
+            pA = imageData.data[i + 3];
 
 
-			if ( pR == 0xD0 && pG == 0xD0 && pB == 0xD0 && pA == 0xFF ) {
-				array[x][y] = gameArray.IceTerrain;
-			} else if ( pR == 0xD0 && pG == 0xA0 && pB == 0x60 && pA == 0xFF ) {
-				array[x][y] = gameArray.SandTerrain;
-			} else if ( pR == 0xFF && pG == 0xCC && pB == 0x99 && pA == 0xFF ) {
-				array[x][y] = gameArray.RandTerrain;
-			} else if ( pR == 0x33 && pG == 0x99 && pB == 0xFF && pA == 0xFF ) {
-				array[x][y] = gameArray.PrismDown;
-			} else if ( pR == 0x33 && pG == 0xCC && pB == 0xFF && pA == 0xFF ) {
-				array[x][y] = gameArray.PrismUp;
-			} else if ( pR == 0x33 && pG == 0x99 && pB == 0xCC && pA == 0xFF ) {
-				array[x][y] = gameArray.PrismLeft;
-			} else if ( pR == 0x33 && pG == 0xCC && pB == 0xCC && pA == 0xFF ) {
-				array[x][y] = gameArray.PrismRight;
-			} else if ( pR == 0xE3 && pG == 0x9D && pB == 0x16 && pA == 0xFF ) {
-				array[x][y] = gameArray.Mirror;
-			} else if ( pR == 0xFF && pG == 0x45 && pB == 0x00 && pA == 0xFF ) {
-				array[x][y] = gameArray.PortalOrange;
-			} else if ( pR == 0xFF && pG == 0x44 && pB == 0x00 && pA == 0xFF ) {
-				array[x][y] = gameArray.PortalOrangeSink;
-			} else if ( pR == 0x44 && pG == 0x2B && pB == 0x3B && pA == 0xFF ) {
-				array[x][y] = gameArray.PortalBlue;
-			} else if ( pR == 0x45 && pG == 0x2B && pB == 0x3B && pA == 0xFF ) {
-				array[x][y] = gameArray.PortalBlueSink;
-			} else if ( pR == 0x66 && pG == 0x33 && pB == 0xCC && pA == 0xFF ) {
-				array[x][y] = gameArray.WinningTerrain;
-			} else {
-				array[x][y] = gameArray.Nothing;
-			}
-			// incrementing array values x and y
-			x += 1;
+            if (pR == 0xD0 && pG == 0xD0 && pB == 0xD0 && pA == 0xFF) {
+                array[x][y] = gameArray.IceTerrain;
+            } else if (pR == 0xD0 && pG == 0xA0 && pB == 0x60 && pA == 0xFF) {
+                array[x][y] = gameArray.SandTerrain;
+            } else if (pR == 0xFF && pG == 0xCC && pB == 0x99 && pA == 0xFF) {
+                array[x][y] = gameArray.RandTerrain;
+            } else if (pR == 0x33 && pG == 0x99 && pB == 0xFF && pA == 0xFF) {
+                array[x][y] = gameArray.PrismDown;
+            } else if (pR == 0x33 && pG == 0xCC && pB == 0xFF && pA == 0xFF) {
+                array[x][y] = gameArray.PrismUp;
+            } else if (pR == 0x33 && pG == 0x99 && pB == 0xCC && pA == 0xFF) {
+                array[x][y] = gameArray.PrismLeft;
+            } else if (pR == 0x33 && pG == 0xCC && pB == 0xCC && pA == 0xFF) {
+                array[x][y] = gameArray.PrismRight;
+            } else if (pR == 0xE3 && pG == 0x9D && pB == 0x16 && pA == 0xFF) {
+                array[x][y] = gameArray.Mirror;
+            } else if (pR == 0xFF && pG == 0x45 && pB == 0x00 && pA == 0xFF) {
+                array[x][y] = gameArray.PortalOrange;
+            } else if (pR == 0xFF && pG == 0x44 && pB == 0x00 && pA == 0xFF) {
+                array[x][y] = gameArray.PortalOrangeSink;
+            } else if (pR == 0x44 && pG == 0x2B && pB == 0x3B && pA == 0xFF) {
+                array[x][y] = gameArray.PortalBlue;
+            } else if (pR == 0x45 && pG == 0x2B && pB == 0x3B && pA == 0xFF) {
+                array[x][y] = gameArray.PortalBlueSink;
+            } else if (pR == 0x66 && pG == 0x33 && pB == 0xCC && pA == 0xFF) {
+                array[x][y] = gameArray.WinningTerrain;
+            } else {
+                array[x][y] = gameArray.Nothing;
+            }
+            // incrementing array values x and y
+            x += 1;
 
-			x = x % imageData.width;
+            x = x % imageData.width;
 
-			if ( x == 0 ) {
-				y += 1;
-				y = y % imageData.height;
-			}
-		}
-		var string = JSON.stringify( array );
-		window.sessionStorage.setItem( "array", string );
-
-	    console.log("foo");
-
-	    /*
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", url, true);
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        xmlhttp.send("array=" + string);
-        */
+            if (x == 0) {
+                y += 1;
+                y = y % imageData.height;
+            }
+        }
+        var string = JSON.stringify(array);
+        window.localStorage.setItem('array', string);
     };
 
 
@@ -343,28 +335,28 @@ var levelCore = (function(levelCore, url) {
 
 
         // specific event listeners for drawing.
-        tempCanvas.addEventListener("mousedown", startDraw, true);
-        tempCanvas.addEventListener("touchstart", onCanvasTouchStartHandler, true);
-        tempCanvas.addEventListener("mouseup", stopDraw, true);
-        tempCanvas.addEventListener("touchend", onCanvasTouchEndHandler, true);
-        //tempCanvas.addEventListener("mouseleave", stopDraw, true); // Fucks Shit Up.
-        tempCanvas.addEventListener("mousemove", keepDraw, true);
-        tempCanvas.addEventListener("touchmove", keepDraw, true);
-        tempCanvas.addEventListener("mousemove", getPos, true);
-        tempCanvas.addEventListener("touchmove", onCanvasTouchMoveHandler, true);
+        tempCanvas.addEventListener('mousedown', startDraw, true);
+        tempCanvas.addEventListener('touchstart', onCanvasTouchStartHandler, true);
+        tempCanvas.addEventListener('mouseup', stopDraw, true);
+        tempCanvas.addEventListener('touchend', onCanvasTouchEndHandler, true);
+        //tempCanvas.addEventListener('mouseleave', stopDraw, true); // Fucks Shit Up.
+        tempCanvas.addEventListener('mousemove', keepDraw, true);
+        tempCanvas.addEventListener('touchmove', keepDraw, true);
+        tempCanvas.addEventListener('mousemove', getPos, true);
+        tempCanvas.addEventListener('touchmove', onCanvasTouchMoveHandler, true);
 
 
         // NEED BETTER WAYS. IDEAS?
-        document.getElementById('incrementSize').addEventListener("click", incrementSize, true);
-        document.getElementById('decrementSize').addEventListener("click", decrementSize, true);
-        document.getElementById('selectSand').addEventListener("click", selectSand, true);
-        document.getElementById('selectRand').addEventListener("click", selectRand, true);
-        document.getElementById('selectIce').addEventListener("click", selectIce, true);
-        document.getElementById('usePencil').addEventListener("click", usePencil, true);
-        document.getElementById('useScale').addEventListener("click", useScale, true);
-        document.getElementById('useSpray').addEventListener("click", useSpray, true);
-        document.getElementById('erase').addEventListener("click", erase, true);
-        document.getElementById('parse').addEventListener("click", reverseParse, true);
+        document.getElementById('incrementSize').addEventListener('click', incrementSize, true);
+        document.getElementById('decrementSize').addEventListener('click', decrementSize, true);
+        document.getElementById('selectSand').addEventListener('click', selectSand, true);
+        document.getElementById('selectRand').addEventListener('click', selectRand, true);
+        document.getElementById('selectIce').addEventListener('click', selectIce, true);
+        document.getElementById('usePencil').addEventListener('click', usePencil, true);
+        document.getElementById('useScale').addEventListener('click', useScale, true);
+        document.getElementById('useSpray').addEventListener('click', useSpray, true);
+        document.getElementById('erase').addEventListener('click', erase, true);
+        document.getElementById('parse').addEventListener('click', reverseParse, true);
 
         //defaults
         curSize = 10;

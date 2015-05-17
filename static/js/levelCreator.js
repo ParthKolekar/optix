@@ -1,4 +1,4 @@
-/* levelCreator.js 
+/* levelCreator.js
 *
 * HAW !!!
 *
@@ -12,11 +12,11 @@
 *
 */
 var levelCreator = {};
-levelCreator.Object = function (array) {
-    /*
-    We drag and drop on the canvas, on hitting play, 
-    we grab the image data from the saved canvas, 
-    reverse parse it to create an array to work with 
+levelCreator.Object = function(array) {
+    /**
+    We drag and drop on the canvas, on hitting play,
+    we grab the image data from the saved canvas,
+    reverse parse it to create an array to work with
     and execute the level as a game.
     */
     this.array = array;
@@ -62,7 +62,7 @@ var layer;
 var stage;
 var arr;
 
-window.onload = function () {
+window.onload = function() {
     arr = [];
     for (var i = 0; i < 1000; i++) {
         arr[i] = [];
@@ -94,13 +94,13 @@ window.onload = function () {
 
 
 
-levelCreator.Object.prototype.reverseParse = function () {
-    /* 
-    Refer to levelcore.js for information about imageData 
-    and pixel manipulation. This function gets the imagedata 
-    from a canvas and builds up the corresponding game array. 
+levelCreator.Object.prototype.reverseParse = function() {
+    /*
+    Refer to levelcore.js for information about imageData
+    and pixel manipulation. This function gets the imagedata
+    from a canvas and builds up the corresponding game array.
     */
-    var imageData = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height);
+    var imageData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
     var pR, pB, pG, pA;
     var x = 0;
     var y = 0;
@@ -181,11 +181,11 @@ levelCreator.Object.prototype.reverseParse = function () {
     The array is stored on the local storage using an AJAX call.
     */
     var string = JSON.stringify(this.array);
-    window.localStorage.setItem("array", string);
+    window.localStorage.setItem('array', string);
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "storeLevel", true);
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-    xmlhttp.send("array=" + string);
+    xmlhttp.open('POST', 'storeLevel', true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    xmlhttp.send('array=' + string);
 };
 
 function createMirrorV() {
@@ -340,6 +340,5 @@ function clearTerrain() {
     stage.add(layer);
 }
 function parseCanvas() {
-
     lvlc.reverseParse();
 }
